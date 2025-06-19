@@ -7,6 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/Homepage";
 import DestinationPage from "./pages/DestinationPage";
 import ComparePage from "./pages/ComparePage";
+import NotFoundPage from "./pages/NotFoundPages";
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
             <Route path="/destinations/:id" element={<DestinationPage />} />
             <Route path="/compare/" element={<ComparePage />} />
           </Route>
+          <Route path="/not-found" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,5 @@
 // Importo la funzione per estrarre l'id dall'URL
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 // Importo le funzioni React per la gestione della chiamata API
 import { useState, useEffect } from "react";
@@ -11,17 +11,28 @@ export default function DestinationPage() {
   // Estraggo l'ID dall'URL
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   //Memorizzo in uno stato i dettagli della destinazione
   const [destinationPage, setDestinationPage] = useState();
 
   //Carico i dati ogni volta che cambia l'ID
   useEffect(() => {
     fetchDestinationsById(id)
-      .then((data) => setDestinationPage(data))
-      .catch((error) =>
-        console.error("Errore durante il recupero dei dati", error)
-      );
-  }, [id]);
+      .then((data) => {
+        if (!data.destination) {
+          // Se non c'è una destinazione valida reindirizzo al 404
+          navigate("/not-found");
+        } else {
+          setDestinationPage(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Errore durante il recupero dei dati", error);
+        // In caso di errore reindirizzo ugualmente alla 404
+        navigate("/not-found");
+      });
+  }, [id, navigate]);
 
   console.log(destinationPage);
 
