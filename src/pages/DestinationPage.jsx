@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { fetchDestinationsById } from "../../api/destinations";
+import { fetchDestinationsById } from "../api/destinations";
 
 export default function DestinationPage() {
   const { id } = useParams();

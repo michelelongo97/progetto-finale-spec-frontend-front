@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { fetchDestinations } from "../../api/destinations";
+import { fetchDestinations } from "../api/destinations";
 
 export default function HomePage() {
   const [destinations, setDestinations] = useState([]);
