@@ -8,10 +8,14 @@ const SearchContext = createContext();
 export function SearchProvider({ children }) {
   // Creo lo stato per la ricerca
   const [search, setSearch] = useState("");
+  // Creo lo stato per il filtro per categoria
+  const [category, setCategory] = useState("all");
 
   return (
     // Rendo disponibile lo stato a tutti i componenenti figli del Provider
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider
+      value={{ search, setSearch, category, setCategory }}
+    >
       {children}
     </SearchContext.Provider>
   );
