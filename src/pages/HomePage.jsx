@@ -14,7 +14,15 @@ export default function HomePage() {
   //Memorizzo in uno stato le destinazioni
   const [destinations, setDestinations] = useState([]);
 
-  const { search, category, setCategory } = useSearchContext();
+  const {
+    search,
+    category,
+    setCategory,
+    sortBy,
+    setSortBy,
+    sortOrder,
+    setSortOrder,
+  } = useSearchContext();
 
   //Recupero le destinazioni al primo render
   useEffect(() => {
@@ -32,7 +40,17 @@ export default function HomePage() {
     )
     .filter((destination) =>
       category === "all" ? true : destination.category === category
-    );
+    )
+    .sort((a, b) => {
+      if (!sortBy) return 0;
+
+      if (sortOrder === "asc") {
+        return a[sortBy].toLowerCase().localeCompare(b[sortBy].toLowerCase());
+      } else if (sortOrder === "desc") {
+        return b[sortBy].toLowerCase().localeCompare(a[sortBy].toLowerCase());
+      }
+      return 0;
+    });
 
   console.log(destinations);
 
@@ -40,6 +58,7 @@ export default function HomePage() {
     <>
       <h1>Home</h1>
 
+      {/* Filtro per categoria*/}
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="all">Tutte le categorie</option>
         <option value="Città">Città</option>
@@ -47,6 +66,20 @@ export default function HomePage() {
         <option value="Avventura">Avventura</option>
       </select>
 
+      {/* Selezione del campo su cui applicare l'ordinamento */}
+      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+        <option value="">Ordina per</option>
+        <option value="title">Titolo</option>
+        <option value="category">Categoria</option>
+      </select>
+
+      {/* Filtro per ordinamento ascendente o discendente*/}
+      <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
+      </select>
+
+      {/* Mostro gli elementi filtrati in pagina*/}
       <ul>
         {filteredDestinations.length === 0 ? (
           <p>Nessuna destinazione trovata secondo i criteri di ricerca</p>
