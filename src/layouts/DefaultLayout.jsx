@@ -7,15 +7,18 @@ import Footer from "../components/Footer";
 
 // Importo il provider dal contesto
 import { SearchProvider } from "../contexts/SearchContext";
+import { FavoritesProvider } from "../contexts/FavoritesContext";
 
 export default function DefaultLayout() {
   return (
     <SearchProvider>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <FavoritesProvider>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </FavoritesProvider>
     </SearchProvider>
   );
 }

@@ -1,13 +1,18 @@
-// Importo l'hook custom creato nel contesto
+import { Link } from "react-router-dom";
+// Importo gli hook custom creati nel contesto
 import { useSearchContext } from "../contexts/SearchContext";
+import { useFavoritesContext } from "../contexts/FavoritesContext";
 
 export default function Header() {
   // Uso il contesto per accedere allo stato di ricerca (search e setSearch
   const { search, setSearch } = useSearchContext();
+  const { favorites } = useFavoritesContext();
 
   return (
     <header>
       <h2>header</h2>
+      <Link to="/">Home</Link>
+      <Link to="/favorites">Preferiti ({favorites.length})</Link>
       <input
         type="text"
         placeholder="Cerca una destinazione"

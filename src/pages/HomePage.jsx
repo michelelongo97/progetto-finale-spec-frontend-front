@@ -7,12 +7,15 @@ import { Link } from "react-router";
 // Importo la funzione API per ricevere tutte le destinazioni
 import { fetchDestinations } from "../api/destinations";
 
-// Importo l'hook custom creato nel contesto
+// Importo gli hook custom creati nel contesto
 import { useSearchContext } from "../contexts/SearchContext";
+import { useFavoritesContext } from "../contexts/FavoritesContext";
 
 export default function HomePage() {
   //Memorizzo in uno stato le destinazioni
   const [destinations, setDestinations] = useState([]);
+  //Memorizzo in uno stato i preferiti importando le variabili dal contesto tramite hook custom
+  const { favorites, setFavorites } = useFavoritesContext();
 
   const {
     search,
@@ -52,6 +55,20 @@ export default function HomePage() {
       return 0;
     });
 
+  //Controllo se l'elemento è presente nei preferiti
+  const isFavorite = (id) => favorites.some((favorite) => favorite.id === id);
+
+  // Creo la logica per l'aggiunta e rimozione dai preferiti
+  const toggleFavorite = (destination) => {
+    if (isFavorite(destination.id)) {
+      setFavorites(
+        favorites.filter((favorite) => favorite.id !== destination.id)
+      );
+    } else {
+      setFavorites([...favorites, destination]);
+    }
+  };
+
   console.log(destinations);
 
   return (
@@ -90,6 +107,11 @@ export default function HomePage() {
                 <h3>{destination.title}</h3>
               </Link>
               <p>{destination.category}</p>
+              <button onClick={() => toggleFavorite(destination)}>
+                {isFavorite(destination.id)
+                  ? "Rimuovi dai preferiti"
+                  : "Aggiungi ai preferiti"}
+              </button>
             </li>
           ))
         )}
