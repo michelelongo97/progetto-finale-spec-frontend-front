@@ -8,16 +8,19 @@ import Footer from "../components/Footer";
 // Importo il provider dal contesto
 import { SearchProvider } from "../contexts/SearchContext";
 import { FavoritesProvider } from "../contexts/FavoritesContext";
+import { CompareProvider } from "../contexts/CompareContext";
 
 export default function DefaultLayout() {
   return (
     <SearchProvider>
       <FavoritesProvider>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
+        <CompareProvider>
+          <Header />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+        </CompareProvider>
       </FavoritesProvider>
     </SearchProvider>
   );

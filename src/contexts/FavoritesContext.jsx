@@ -17,7 +17,7 @@ export function FavoritesProvider({ children }) {
   );
 }
 
-// Creo custom hook per accedere più facilmente al contesto della ricerca
+// Creo custom hook per accedere più facilmente al contesto dei preferiti
 export function useFavoritesContext() {
   // Recupero il contesto
   return useContext(FavoritesContext);

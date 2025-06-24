@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 // Importo la funzione per la gestione dei link
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 // Importo la funzione API per ricevere tutte le destinazioni
 import { fetchDestinations } from "../api/destinations";
@@ -10,12 +10,15 @@ import { fetchDestinations } from "../api/destinations";
 // Importo gli hook custom creati nel contesto
 import { useSearchContext } from "../contexts/SearchContext";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
+import { useCompareContext } from "../contexts/CompareContext";
 
 export default function HomePage() {
   //Memorizzo in uno stato le destinazioni
   const [destinations, setDestinations] = useState([]);
   //Memorizzo in uno stato i preferiti importando le variabili dal contesto tramite hook custom
   const { favorites, setFavorites } = useFavoritesContext();
+  //Importo dal contesto la funzione da assegnare al bottone confronta destinazioni
+  const { addToCompare } = useCompareContext();
 
   const {
     search,
@@ -111,6 +114,9 @@ export default function HomePage() {
                 {isFavorite(destination.id)
                   ? "Rimuovi dai preferiti"
                   : "Aggiungi ai preferiti"}
+              </button>
+              <button onClick={() => addToCompare(destination)}>
+                Confronta
               </button>
             </li>
           ))
