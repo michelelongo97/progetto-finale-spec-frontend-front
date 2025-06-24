@@ -19,7 +19,7 @@ export default function Header() {
       <input
         type="text"
         placeholder="Cerca una destinazione"
-        value={search}
+        defaultValue={search}
         onChange={(e) => setSearch(e.target.value)}
       />
     </header>
