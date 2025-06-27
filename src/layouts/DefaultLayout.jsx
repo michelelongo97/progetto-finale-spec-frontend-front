@@ -15,11 +15,13 @@ export default function DefaultLayout() {
     <SearchProvider>
       <FavoritesProvider>
         <CompareProvider>
-          <Header />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
+          <div className="d-flex flex-column min-vh-100 bg-c-light">
+            <Header />
+            <main className="container flex-grow-1">
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
         </CompareProvider>
       </FavoritesProvider>
     </SearchProvider>

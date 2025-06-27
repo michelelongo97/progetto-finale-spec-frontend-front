@@ -11,25 +11,40 @@ export default function Favorites() {
   };
 
   return (
-    <>
-      <h1>Preferiti</h1>
+    <div className="container">
+      <h1 className="mb-4">Preferiti</h1>
       {favorites.length === 0 ? (
-        <p>La lista dei preferiti è vuota</p>
+        <p className="text-muted">La lista dei preferiti è vuota</p>
       ) : (
-        <ul>
+        <div className="row g-4">
           {favorites.map((destination) => (
-            <li key={destination.id}>
-              <Link to={`/destinations/${destination.id}`}>
-                {destination.title}
-              </Link>
-              <p>{destination.category}</p>
-              <button onClick={() => removeFromFavorites(destination.id)}>
-                Rimuovi dai preferiti
-              </button>
-            </li>
+            <div key={destination.id} className="col-md-4">
+              <div className="card h-100 shadow-sm">
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">
+                    <Link
+                      to={`/destinations/${destination.id}`}
+                      className="text-decoration-none text-c-primary"
+                    >
+                      {destination.title}
+                    </Link>
+                  </h5>
+
+                  <p className="card-text text-muted">{destination.category}</p>
+                  <div className="mt-auto">
+                    <button
+                      className="btn btn-sm btn-c-danger"
+                      onClick={() => removeFromFavorites(destination.id)}
+                    >
+                      Rimuovi dai preferiti
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
-    </>
+    </div>
   );
 }

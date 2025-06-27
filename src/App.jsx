@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 // importazione pagine
-import HomePage from "./pages/Homepage";
+import HomePage from "./pages/HomePage";
 import DestinationPage from "./pages/DestinationPage";
 import ComparePage from "./pages/ComparePage";
 import FavoritePage from "./pages/FavoritesPage";

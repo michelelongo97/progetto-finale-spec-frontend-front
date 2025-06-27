@@ -30,31 +30,72 @@ export default function ComparePage() {
   }, [compareList]);
 
   return (
-    <>
-      <h1>Pagina di comparazione viaggi</h1>
+    <div className="container">
+      <h1 className="mb-4">Pagina di comparazione viaggi</h1>
       {detailedList.length === 0 ? (
-        <p>Non è presente alcuna destinazione da confrontare</p>
+        <p className="text-muted">
+          Non è presente alcuna destinazione da confrontare
+        </p>
       ) : (
-        <ul>
+        <div className="row g-4">
           {detailedList.map((destination) => (
-            <li key={destination.id}>
-              <Link to={`/destinations/${destination.id}`}>
-                <h3>{destination.title}</h3>
-              </Link>
-              <p>Categoria: {destination.category}</p>
-              <p>Paese: {destination.country}</p>
-              <p>Continente: {destination.continent}</p>
-              <p>Stagione migliore: {destination.bestSeason}</p>
-              <p>Costo medio: {destination.averageCost}€</p>
-              <p>Ore di volo: {destination.flightHours}</p>
-              <p>Valutazione: {destination.rating}⭐</p>
-              <button onClick={() => removeFromCompare(destination.id)}>
-                Rimuovi dal confronto
-              </button>
-            </li>
+            <div key={destination.id} className="col-md-6 col-lg-4">
+              <div className="card h-100 shadow-sm">
+                {destination.image && (
+                  <img
+                    src={destination.image}
+                    alt={destination.title}
+                    className="card-img-top"
+                    style={{ objectFit: "cover", height: "200px" }}
+                  />
+                )}
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">
+                    <Link
+                      to={`/destinations/${destination.id}`}
+                      className="text-decoration-none text-c-primary"
+                    >
+                      {destination.title}
+                    </Link>
+                  </h5>
+                  <ul className="list-unstyled text-muted small mb-3">
+                    <li>
+                      <strong>Categoria:</strong> {destination.category}
+                    </li>
+                    <li>
+                      <strong>Paese:</strong> {destination.country}
+                    </li>
+                    <li>
+                      <strong>Continente:</strong> {destination.continent}
+                    </li>
+                    <li>
+                      <strong>Stagione migliore:</strong>{" "}
+                      {destination.bestSeason}
+                    </li>
+                    <li>
+                      <strong>Costo medio:</strong> {destination.averageCost}€
+                    </li>
+                    <li>
+                      <strong>Ore di volo:</strong> {destination.flightHours}
+                    </li>
+                    <li>
+                      <strong>Valutazione:</strong> {destination.rating}⭐
+                    </li>
+                  </ul>
+                  <div className="mt-auto">
+                    <button
+                      className="btn btn-sm btn-c-outline-danger"
+                      onClick={() => removeFromCompare(destination.id)}
+                    >
+                      Rimuovi dal confronto
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
-    </>
+    </div>
   );
 }

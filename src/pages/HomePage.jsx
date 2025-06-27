@@ -75,53 +75,97 @@ export default function HomePage() {
   console.log(destinations);
 
   return (
-    <>
-      <h1>Home</h1>
+    <div className="container">
+      <h1 className="mb-4">Destinazioni</h1>
 
-      {/* Filtro per categoria*/}
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="all">Tutte le categorie</option>
-        <option value="Città">Città</option>
-        <option value="Spiaggia">Spiaggia</option>
-        <option value="Avventura">Avventura</option>
-      </select>
+      <div className="row g-3 mb-4">
+        <div className="col-md-4">
+          {/* Filtro per categoria*/}
+          <select
+            className="form-select"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="all">Tutte le categorie</option>
+            <option value="Città">Città</option>
+            <option value="Spiaggia">Spiaggia</option>
+            <option value="Avventura">Avventura</option>
+          </select>
+        </div>
 
-      {/* Selezione del campo su cui applicare l'ordinamento */}
-      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-        <option value="">Ordina per</option>
-        <option value="title">Titolo</option>
-        <option value="category">Categoria</option>
-      </select>
+        <div className="col-md-4">
+          {/* Selezione del campo su cui applicare l'ordinamento */}
+          <select
+            className="form-select"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="">Ordina per</option>
+            <option value="title">Titolo</option>
+            <option value="category">Categoria</option>
+          </select>
+        </div>
 
-      {/* Filtro per ordinamento ascendente o discendente*/}
-      <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-        <option value="asc">A-Z</option>
-        <option value="desc">Z-A</option>
-      </select>
+        <div className="col-md-4">
+          {/* Filtro per ordinamento ascendente o discendente*/}
+          <select
+            className="form-select"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+          </select>
+        </div>
+      </div>
 
       {/* Mostro gli elementi filtrati in pagina*/}
-      <ul>
-        {filteredDestinations.length === 0 ? (
-          <p>Nessuna destinazione trovata secondo i criteri di ricerca</p>
-        ) : (
-          filteredDestinations.map((destination) => (
-            <li key={destination.id}>
-              <Link to={`/destinations/${destination.id}`}>
-                <h3>{destination.title}</h3>
-              </Link>
-              <p>{destination.category}</p>
-              <button onClick={() => toggleFavorite(destination)}>
-                {isFavorite(destination.id)
-                  ? "Rimuovi dai preferiti"
-                  : "Aggiungi ai preferiti"}
-              </button>
-              <button onClick={() => addToCompare(destination)}>
-                Confronta
-              </button>
-            </li>
-          ))
-        )}
-      </ul>
-    </>
+      {filteredDestinations.length === 0 ? (
+        <p className="text-muted">
+          Nessuna destinazione trovata secondo i criteri di ricerca
+        </p>
+      ) : (
+        <div className="row g-4">
+          {filteredDestinations.map((destination) => (
+            <div key={destination.id} className="col-md-4">
+              <div className="card h-100 shadow-sm">
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">
+                    <Link
+                      to={`/destinations/${destination.id}`}
+                      className="text-decoration-none text-c-primary"
+                    >
+                      {destination.title}
+                    </Link>
+                  </h5>
+                  <p className="card-text text-muted">{destination.category}</p>
+
+                  <div className="mt-auto d-flex gap-2">
+                    <button
+                      className={`btn btn-sm ${
+                        isFavorite(destination.id)
+                          ? "btn-c-danger"
+                          : "btn-c-outline-danger"
+                      }`}
+                      onClick={() => toggleFavorite(destination)}
+                    >
+                      {isFavorite(destination.id)
+                        ? "Rimuovi dai preferiti"
+                        : "Aggiungi ai preferiti"}
+                    </button>
+                    <button
+                      className="btn btn-sm btn-c-outline-primary"
+                      onClick={() => addToCompare(destination)}
+                    >
+                      Confronta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
