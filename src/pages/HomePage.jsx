@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Importo la funzione API per ricevere tutte le destinazioni
-import { fetchDestinations } from "../api/destinations";
+import { fetchDestinations, fetchDestinationsById } from "../api/destinations";
 
 // Importo gli hook custom creati nel contesto
 import { useSearchContext } from "../contexts/SearchContext";
@@ -33,7 +33,17 @@ export default function HomePage() {
   //Recupero le destinazioni al primo render
   useEffect(() => {
     fetchDestinations()
-      .then((data) => setDestinations(data))
+      .then((data) => {
+        Promise.all(
+          data.map((destination) =>
+            fetchDestinationsById(destination.id).then((res) => res.destination)
+          )
+        )
+          .then(setDestinations)
+          .catch((error) =>
+            console.error("Errore durante il recupero dei dati", error)
+          );
+      })
       .catch((error) =>
         console.error("Errore durante il recupero dei dati", error)
       );
@@ -129,6 +139,15 @@ export default function HomePage() {
           {filteredDestinations.map((destination) => (
             <div key={destination.id} className="col-md-4">
               <div className="card h-100 shadow-sm">
+                {destination.image && (
+                  <img
+                    src={destination.image}
+                    className="card-img-top"
+                    alt={destination.title}
+                    style={{ objectFit: "cover", height: "200px" }}
+                  />
+                )}
+
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">
                     <Link
