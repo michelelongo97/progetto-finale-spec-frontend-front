@@ -31,7 +31,7 @@ export default function ComparePage() {
 
   return (
     <div className="container">
-      <h1 className="mb-4">Pagina di comparazione viaggi</h1>
+      <h1 className="mb-4">Comparazione destinazioni</h1>
       {detailedList.length === 0 ? (
         <p className="text-muted">
           Non è presente alcuna destinazione da confrontare

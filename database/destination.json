@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Tokyo",
+    "category": "Città",
+    "country": "Giappone",
+    "continent": "Asia",
+    "bestSeason": "Primavera",
+    "averageCost": 1800,
+    "flightHours": 12,
+    "rating": 4.8,
+    "image": "/image/tokyo.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Bali",
+    "category": "Spiaggia",
+    "country": "Indonesia",
+    "continent": "Asia",
+    "bestSeason": "Estate",
+    "averageCost": 1400,
+    "flightHours": 16,
+    "rating": 4.9,
+    "image": "/image/bali.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Reykjavik",
+    "category": "Avventura",
+    "country": "Islanda",
+    "continent": "Europa",
+    "bestSeason": "Inverno",
+    "averageCost": 1600,
+    "flightHours": 5,
+    "rating": 4.6,
+    "image": "/image/reykjavik.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Barcellona",
+    "category": "Città",
+    "country": "Spagna",
+    "continent": "Europa",
+    "bestSeason": "Primavera",
+    "averageCost": 700,
+    "flightHours": 2,
+    "rating": 4.7,
+    "image": "/image/barcellona.jpg"
+  },
+  {
+    "id": 5,
+    "title": "New York",
+    "category": "Città",
+    "country": "USA",
+    "continent": "America",
+    "bestSeason": "Autunno",
+    "averageCost": 1500,
+    "flightHours": 9,
+    "rating": 4.8,
+    "image": "/image/newyork.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Maldive",
+    "category": "Spiaggia",
+    "country": "Maldive",
+    "continent": "Asia",
+    "bestSeason": "Inverno",
+    "averageCost": 2000,
+    "flightHours": 13,
+    "rating": 4.9,
+    "image": "/image/maldive.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Cape Town",
+    "category": "Avventura",
+    "country": "Sudafrica",
+    "continent": "Africa",
+    "bestSeason": "Primavera",
+    "averageCost": 1700,
+    "flightHours": 11,
+    "rating": 4.5,
+    "image": "/image/capetown.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Sydney",
+    "category": "Città",
+    "country": "Australia",
+    "continent": "Oceania",
+    "bestSeason": "Primavera",
+    "averageCost": 2100,
+    "flightHours": 22,
+    "rating": 4.6,
+    "image": "/image/sydney.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Vancouver",
+    "category": "Avventura",
+    "country": "Canada",
+    "continent": "America",
+    "bestSeason": "Estate",
+    "averageCost": 1700,
+    "flightHours": 11,
+    "rating": 4.7,
+    "image": "/image/vancouver.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Santorini",
+    "category": "Spiaggia",
+    "country": "Grecia",
+    "continent": "Europa",
+    "bestSeason": "Estate",
+    "averageCost": 1000,
+    "flightHours": 3,
+    "rating": 4.8,
+    "image": "/image/santorini.jpg"
+  }
+]
